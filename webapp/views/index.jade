@@ -1,0 +1,106 @@
+//- motor-driver.js
+//- 
+//- This connects to the sketch found in RemoteMotors.ino via the text TCP/IP
+//- interface.
+//- 
+//- The controller software in RemoteControlMotors.ino handles the error
+//- control for the motors, so this JavaScript pretty much just passes
+//- the commands straight to the motor controller.
+//- 
+//- See README.md for more details.
+//- 
+//- This is a sketch to control brushless DC motors with PWM via a simple
+//- text-based TCP/IP interface. See the README.md file for more information.
+//- 
+//- 
+//- Copyright (c) 2013 Alicia M. F. Key
+//- 
+//- Permission is hereby granted, free of charge, to any person obtaining a 
+//- copy of this software and associated documentation files (the 
+//- "Software"), to deal in the Software without restriction, including 
+//- without limitation the rights to use, copy, modify, merge, publish, 
+//- distribute, sublicense, and/or sell copies of the Software, and to 
+//- permit persons to whom the Software is furnished to do so, subject to 
+//- the following conditions:
+//- 
+//- The above copyright notice and this permission notice shall be included 
+//- in all copies or substantial portions of the Software.
+//- 
+//- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+//- OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+//- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+//- IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+//- CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+//- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+//- SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+!!! 5
+html
+
+  head
+    title Remote Control Motors
+    meta(name="viewport",content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css")
+    script(src="http://code.jquery.com/jquery-1.8.2.min.js")
+    script(src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js")
+    script(src="/frontend.js")
+
+  body
+
+    div(data-role="page")
+
+      div(data-role="header")
+        h1 Remote Control Motors
+
+      div(data-role="content", data-theme="b")
+
+        a(href="#",data-role="button",id="start-all-motors-button",data-icon="gear",data-theme="e") Start All Motors
+
+        legend(style="font-weight: bold;") Motor 1
+        div(data-role="controlgroup", data-type="horizontal")
+          label(for="motor-0-off") Off
+          input(type="radio", id="motor-0-off", name="motor-0", checked="checked", data-motor-number="0", data-motor-speed="0")
+          label(for="motor-0-low") Low
+          input(type="radio", id="motor-0-low", name="motor-0", data-motor-number="0", data-motor-speed="19")
+          label(for="motor-0-medium") Medium
+          input(type="radio", id="motor-0-medium", name="motor-0", data-motor-number="0", data-motor-speed="59")
+          label(for="motor-0-high") High
+          input(type="radio", id="motor-0-high", name="motor-0", data-motor-number="0", data-motor-speed="99")
+
+        legend(style="font-weight: bold;") Motor 2
+        div(data-role="controlgroup", data-type="horizontal")
+          label(for="motor-1-off") Off
+          input(type="radio", id="motor-1-off", name="motor-1", checked="checked", data-motor-number="1", data-motor-speed="0")
+          label(for="motor-1-low") Low
+          input(type="radio", id="motor-1-low", name="motor-1", data-motor-number="1", data-motor-speed="19")
+          label(for="motor-1-medium") Medium
+          input(type="radio", id="motor-1-medium", name="motor-1", data-motor-number="1", data-motor-speed="59")
+          label(for="motor-1-high") High
+          input(type="radio", id="motor-1-high", name="motor-1", data-motor-number="1", data-motor-speed="99")
+
+        legend(style="font-weight: bold;") Motor 3
+        div(data-role="controlgroup", data-type="horizontal")
+          label(for="motor-2-off") Off
+          input(type="radio", id="motor-2-off", name="motor-2", checked="checked", data-motor-number="2", data-motor-speed="0")
+          label(for="motor-2-low") Low
+          input(type="radio", id="motor-2-low", name="motor-2", data-motor-number="2", data-motor-speed="19")
+          label(for="motor-2-medium") Medium
+          input(type="radio", id="motor-2-medium", name="motor-2", data-motor-number="2", data-motor-speed="59")
+          label(for="motor-2-high") High
+          input(type="radio", id="motor-2-high", name="motor-2", data-motor-number="2", data-motor-speed="99")
+
+        legend(style="font-weight: bold;") Motor 4
+        div(data-role="controlgroup", data-type="horizontal")
+          label(for="motor-3-off") Off
+          input(type="radio", id="motor-3-off", name="motor-3", checked="checked", data-motor-number="3", data-motor-speed="0")
+          label(for="motor-3-low") Low
+          input(type="radio", id="motor-3-low", name="motor-3", data-motor-number="3", data-motor-speed="19")
+          label(for="motor-3-medium") Medium
+          input(type="radio", id="motor-3-medium", name="motor-3", data-motor-number="3", data-motor-speed="59")
+          label(for="motor-3-high") High
+          input(type="radio", id="motor-3-high", name="motor-3", data-motor-number="3", data-motor-speed="99")
+
+        a(href="#",data-role="button",id="stop-all-motors-button",data-icon="delete",data-theme="e") Stop All Motors
+
+      div(data-role="footer")
+        h1 From akey7.com

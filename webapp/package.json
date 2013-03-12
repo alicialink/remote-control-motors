@@ -1,0 +1,11 @@
+{
+	"name": "remote-control-motors",
+	"description": "Interface to the remote control motors.",
+  "private": true,
+	"version": "0.0.1",
+  "dependencies": {
+    "jade": "0.28.1",
+    "connect": "2.7.2",
+    "express": "3.1.0"
+  }
+}
